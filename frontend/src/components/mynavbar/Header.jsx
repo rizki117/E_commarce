@@ -14,7 +14,7 @@ const Header = () => (
   <header
     className="bg-dark py-5 position-relative"
     style={{
-      backgroundImage: 'url("/images/jumbo.jpeg")',
+      backgroundImage: 'url("/images/jum.png")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
