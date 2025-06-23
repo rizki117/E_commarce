@@ -22,8 +22,13 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5000',
   'http://172.16.0.2:3000', // IP lokal kamu
-  'http://192.168.30.71:3000'
+  'http://192.168.30.71:3000',
+ 
+ //frontend hasil hosting di vercel
+  'https://e-commarce-lyart.vercel.app'
+ 
   
+
 ];
 
 app.use(cors({
