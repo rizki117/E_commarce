@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-// Logo.jsx - Responsive Version
 import React from 'react';
 
 const Logo = ({ 
@@ -36,101 +26,243 @@ const Logo = ({
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
-        {/* Gradient untuk background */}
+        {/* Enhanced gradient dengan lebih banyak warna */}
         <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style={{stopColor:"#ff6b6b", stopOpacity:1}} />
-          <stop offset="30%" style={{stopColor:"#4ecdc4", stopOpacity:1}} />
-          <stop offset="70%" style={{stopColor:"#45b7d1", stopOpacity:1}} />
-          <stop offset="100%" style={{stopColor:"#96ceb4", stopOpacity:1}} />
+          <stop offset="0%" style={{stopColor:"#667eea", stopOpacity:1}} />
+          <stop offset="25%" style={{stopColor:"#764ba2", stopOpacity:1}} />
+          <stop offset="50%" style={{stopColor:"#f093fb", stopOpacity:1}} />
+          <stop offset="75%" style={{stopColor:"#f5576c", stopOpacity:1}} />
+          <stop offset="100%" style={{stopColor:"#4facfe", stopOpacity:1}} />
         </linearGradient>
         
-        {/* Gradient untuk teks */}
+        {/* Animated gradient */}
+        <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style={{stopColor:"#667eea", stopOpacity:1}}>
+            <animate attributeName="stop-color" 
+                     values="#667eea;#764ba2;#f093fb;#f5576c;#4facfe;#667eea" 
+                     dur="8s" repeatCount="indefinite"/>
+          </stop>
+          <stop offset="50%" style={{stopColor:"#f093fb", stopOpacity:1}}>
+            <animate attributeName="stop-color" 
+                     values="#f093fb;#f5576c;#4facfe;#667eea;#764ba2;#f093fb" 
+                     dur="8s" repeatCount="indefinite"/>
+          </stop>
+          <stop offset="100%" style={{stopColor:"#4facfe", stopOpacity:1}}>
+            <animate attributeName="stop-color" 
+                     values="#4facfe;#667eea;#764ba2;#f093fb;#f5576c;#4facfe" 
+                     dur="8s" repeatCount="indefinite"/>
+          </stop>
+        </linearGradient>
+        
+        {/* Text gradient dengan shimmer effect */}
         <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style={{stopColor:"#2c3e50", stopOpacity:1}} />
-          <stop offset="100%" style={{stopColor:"#34495e", stopOpacity:1}} />
+          <stop offset="0%" style={{stopColor:"#ffffff", stopOpacity:1}} />
+          <stop offset="50%" style={{stopColor:"#f8f9ff", stopOpacity:1}} />
+          <stop offset="100%" style={{stopColor:"#ffffff", stopOpacity:1}} />
+          <animateTransform attributeName="gradientTransform" 
+                           type="translate" 
+                           values="-200,0;200,0;-200,0" 
+                           dur="3s" 
+                           repeatCount="indefinite"/>
         </linearGradient>
         
-        {/* Gradient untuk ikon */}
-        <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style={{stopColor:"#ffffff", stopOpacity:0.9}} />
-          <stop offset="100%" style={{stopColor:"#f1c40f", stopOpacity:0.8}} />
-        </linearGradient>
+        {/* Icon gradient yang lebih vibrant */}
+        <radialGradient id="iconGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style={{stopColor:"#ffffff", stopOpacity:1}} />
+          <stop offset="70%" style={{stopColor:"#ffd700", stopOpacity:0.9}} />
+          <stop offset="100%" style={{stopColor:"#ff6b35", stopOpacity:0.8}} />
+        </radialGradient>
         
-        {/* Shadow filter */}
+        {/* Enhanced shadow dengan blur yang lebih soft */}
         <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="2" dy="2" stdDeviation="3" floodColor="#00000030"/>
+          <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#00000040"/>
+          <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#00000020"/>
         </filter>
         
-        {/* Glow effect */}
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+        {/* Advanced glow effect */}
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
           <feMerge> 
             <feMergeNode in="coloredBlur"/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
+        
+        {/* Neon glow untuk teks */}
+        <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feGaussianBlur stdDeviation="4" result="bigBlur"/>
+          <feMerge> 
+            <feMergeNode in="bigBlur"/>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        
+        {/* Pattern untuk texture */}
+        <pattern id="dots" patternUnits="userSpaceOnUse" width="10" height="10">
+          <circle cx="5" cy="5" r="1" fill="#ffffff" opacity="0.1"/>
+        </pattern>
       </defs>
       
-      {/* Background dengan bentuk rounded rectangle */}
-      <rect x="10" y="10" width="180" height="40" rx="20" ry="20" 
-            fill="url(#mainGradient)" 
-            filter="url(#shadow)"/>
+      {/* Background utama dengan animasi */}
+      <rect x="5" y="5" width="190" height="50" rx="25" ry="25" 
+            fill="url(#animatedGradient)" 
+            filter="url(#shadow)"
+            opacity="0.95">
+        <animate attributeName="rx" values="25;30;25" dur="4s" repeatCount="indefinite"/>
+      </rect>
       
-      {/* Ikon shopping di dalam background - posisi kiri */}
-      <g transform="translate(25, 20)" opacity="0.3">
-        {/* Cart base */}
-        <path d="M2 8 L16 8 L15 18 C15 19 14 20 13 20 L5 20 C4 20 3 19 3 18 L2 8 Z" 
-              fill="url(#iconGradient)"/>
+      {/* Background overlay dengan pattern */}
+      <rect x="5" y="5" width="190" height="50" rx="25" ry="25" 
+            fill="url(#dots)" 
+            opacity="0.3"/>
+      
+      {/* Highlight strip di bagian atas */}
+      <rect x="5" y="5" width="190" height="15" rx="25" ry="25" 
+            fill="url(#textGradient)" 
+            opacity="0.2"/>
+      
+      {/* Enhanced shopping cart icon - kiri */}
+      <g transform="translate(25, 22)" filter="url(#glow)">
+        {/* Cart body dengan styling modern */}
+        <path d="M1 6 L14 6 L13.5 16 C13.5 17.5 12.5 18.5 11 18.5 L4 18.5 C2.5 18.5 1.5 17.5 1.5 16 L1 6 Z" 
+              fill="url(#iconGradient)" 
+              stroke="#ffffff" 
+              strokeWidth="0.5" 
+              opacity="0.9"/>
         
-        {/* Cart handle */}
-        <path d="M6 8 L6 6 C6 4 7 3 9 3 C11 3 12 4 12 6 L12 8" 
-              fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"/>
+        {/* Cart handle dengan animasi */}
+        <path d="M5 6 L5 4 C5 2.5 6 1.5 7.5 1.5 C9 1.5 10 2.5 10 4 L10 6" 
+              fill="none" 
+              stroke="#ffffff" 
+              strokeWidth="1.5" 
+              strokeLinecap="round"
+              opacity="0.9">
+          <animate attributeName="stroke-width" values="1.5;2;1.5" dur="2s" repeatCount="indefinite"/>
+        </path>
         
-        {/* Modern details */}
-        <circle cx="7" cy="15" r="1" fill="#ffffff"/>
-        <circle cx="11" cy="15" r="1" fill="#ffffff"/>
+        {/* Animated wheels */}
+        <circle cx="5.5" cy="13" r="1" fill="#ffffff">
+          <animate attributeName="r" values="1;1.2;1" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="9.5" cy="13" r="1" fill="#ffffff">
+          <animate attributeName="r" values="1;1.2;1" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+        </circle>
+        
+        {/* Sparkle effect */}
+        <g opacity="0.7">
+          <path d="M12 3 L13 5 L15 4 L13 6 L12 8 L11 6 L9 4 L11 5 Z" fill="#ffd700">
+            <animateTransform attributeName="transform" 
+                             type="rotate" 
+                             values="0 12 5;360 12 5" 
+                             dur="6s" 
+                             repeatCount="indefinite"/>
+          </path>
+        </g>
       </g>
       
-      {/* Ikon shopping di dalam background - posisi kanan */}
-      <g transform="translate(155, 20)" opacity="0.2">
-        {/* Cart base */}
-        <path d="M2 8 L16 8 L15 18 C15 19 14 20 13 20 L5 20 C4 20 3 19 3 18 L2 8 Z" 
-              fill="url(#iconGradient)"/>
+      {/* Enhanced shopping cart icon - kanan */}
+      <g transform="translate(155, 22)" filter="url(#glow)" opacity="0.6">
+        <path d="M1 6 L14 6 L13.5 16 C13.5 17.5 12.5 18.5 11 18.5 L4 18.5 C2.5 18.5 1.5 17.5 1.5 16 L1 6 Z" 
+              fill="url(#iconGradient)" 
+              stroke="#ffffff" 
+              strokeWidth="0.5"/>
         
-        {/* Cart handle */}
-        <path d="M6 8 L6 6 C6 4 7 3 9 3 C11 3 12 4 12 6 L12 8" 
-              fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M5 6 L5 4 C5 2.5 6 1.5 7.5 1.5 C9 1.5 10 2.5 10 4 L10 6" 
+              fill="none" 
+              stroke="#ffffff" 
+              strokeWidth="1.5" 
+              strokeLinecap="round"/>
         
-        {/* Modern details */}
-        <circle cx="7" cy="15" r="1" fill="#ffffff"/>
-        <circle cx="11" cy="15" r="1" fill="#ffffff"/>
+        <circle cx="5.5" cy="13" r="1" fill="#ffffff"/>
+        <circle cx="9.5" cy="13" r="1" fill="#ffffff"/>
       </g>
       
-      {/* Text "OkYaKu" dengan style modern - di tengah */}
-      <g transform="translate(100, 30)">
-        <text x="-30" y="8" fontFamily="Helvetica, Arial, sans-serif" fontSize="18" fontWeight="900" fill="#ffffff" textAnchor="middle" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>
+      {/* Enhanced text "OkYaKu" dengan effects yang lebih dramatis */}
+      <g transform="translate(100, 35)" filter="url(#neonGlow)">
+        {/* Background text untuk depth */}
+        <text x="-32" y="0" fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif" 
+              fontSize="20" fontWeight="900" fill="#000000" textAnchor="middle" opacity="0.3">
           Ok
         </text>
-        <text x="0" y="8" fontFamily="Helvetica, Arial, sans-serif" fontSize="18" fontWeight="900" fill="#f1c40f" textAnchor="middle" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>
+        <text x="0" y="0" fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif" 
+              fontSize="20" fontWeight="900" fill="#000000" textAnchor="middle" opacity="0.3">
           Ya
         </text>
-        <text x="30" y="8" fontFamily="Helvetica, Arial, sans-serif" fontSize="18" fontWeight="900" fill="#ffffff" textAnchor="middle" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>
+        <text x="32" y="0" fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif" 
+              fontSize="20" fontWeight="900" fill="#000000" textAnchor="middle" opacity="0.3">
           Ku
+        </text>
+        
+        {/* Main text dengan animasi */}
+        <text x="-32" y="-2" fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif" 
+              fontSize="20" fontWeight="900" fill="#ffffff" textAnchor="middle">
+          Ok
+          <animate attributeName="fill" 
+                   values="#ffffff;#ffd700;#ffffff" 
+                   dur="3s" 
+                   repeatCount="indefinite"/>
+        </text>
+        
+        <text x="0" y="-2" fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif" 
+              fontSize="20" fontWeight="900" fill="#ffd700" textAnchor="middle">
+          Ya
+          <animate attributeName="fill" 
+                   values="#ffd700;#ff6b35;#ffd700" 
+                   dur="3s" 
+                   repeatCount="indefinite" 
+                   begin="1s"/>
+        </text>
+        
+        <text x="32" y="-2" fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif" 
+              fontSize="20" fontWeight="900" fill="#ffffff" textAnchor="middle">
+          Ku
+          <animate attributeName="fill" 
+                   values="#ffffff;#4facfe;#ffffff" 
+                   dur="3s" 
+                   repeatCount="indefinite" 
+                   begin="2s"/>
         </text>
       </g>
       
-      {/* Decorative dots dengan animasi halus */}
-      <circle cx="45" cy="35" r="1.5" fill="#ffffff" opacity="0.4">
-        <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite"/>
-      </circle>
+      {/* Floating particles dengan berbagai ukuran */}
+      <g opacity="0.6">
+        <circle cx="40" cy="20" r="1.5" fill="#ffd700">
+          <animate attributeName="cy" values="20;15;20" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        
+        <circle cx="160" cy="40" r="1" fill="#ff6b35">
+          <animate attributeName="cx" values="160;165;160" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="1;2;1" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        
+        <circle cx="50" cy="45" r="0.8" fill="#4facfe">
+          <animate attributeName="cy" values="45;40;45" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.2;0.7;0.2" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        
+        <circle cx="150" cy="15" r="1.2" fill="#ffffff">
+          <animate attributeName="r" values="1.2;0.5;1.2" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
       
-      <circle cx="155" cy="25" r="1" fill="#f1c40f" opacity="0.5">
-        <animate attributeName="r" values="0.5;1.5;0.5" dur="2.5s" repeatCount="indefinite"/>
-      </circle>
-      
-      <circle cx="50" cy="25" r="1" fill="#ffffff" opacity="0.3">
-        <animate attributeName="opacity" values="0.1;0.5;0.1" dur="2s" repeatCount="indefinite"/>
-      </circle>
+      {/* Subtle geometric shapes untuk modern touch */}
+      <g opacity="0.1">
+        <polygon points="35,12 40,8 45,12 40,16" fill="#ffffff">
+          <animateTransform attributeName="transform" 
+                           type="rotate" 
+                           values="0 40 12;360 40 12" 
+                           dur="10s" 
+                           repeatCount="indefinite"/>
+        </polygon>
+        
+        <rect x="155" y="35" width="6" height="6" fill="#ffd700" transform="rotate(45 158 38)">
+          <animate attributeName="opacity" values="0.1;0.3;0.1" dur="3s" repeatCount="indefinite"/>
+        </rect>
+      </g>
     </svg>
   );
 };
