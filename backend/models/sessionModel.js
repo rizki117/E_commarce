@@ -28,7 +28,7 @@ const UserSession = db.define(
 User.hasMany(UserSession);
 UserSession.belongsTo(User, {foreignKey: 'userId'});
 
-//(async()=>{await db.sync()})();
+(async()=>{await db.sync()})();
 
 
 export default UserSession;

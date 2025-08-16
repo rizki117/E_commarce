@@ -57,6 +57,6 @@ type:DataTypes.INTEGER
 User.hasMany(Produk);
 Produk.belongsTo(User, {foreignKey: 'userId'});
 
-//(async()=>{await db.sync()})();
+(async()=>{await db.sync()})();
 
 export default Produk;

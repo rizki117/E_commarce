@@ -1,21 +1,5 @@
-
-
-
-
-
-
-
-
-
-
 // services/publicService.js
-import axios from "axios";
-
-// Buat instance Axios
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  withCredentials: true,
-});
+import api from "./api";
 
 // Ambil semua produk publik
 export const getPublicProduk = async () => {
